@@ -1,0 +1,29 @@
+#container {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#person {
+    text-align: center;
+}
+
+#person > p:first-child {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+#form {
+    display: grid;
+    grid-template-rows: auto;
+    width: 300px;
+}
+
+#form-container {
+    margin-top: 5%;
+    margin-left: 10%
+}
+
+#form-button {
+    margin-top: 30px;
+}
