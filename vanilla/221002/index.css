@@ -1,0 +1,8 @@
+#myProfile {
+    border: solid 2px black;
+}
+
+#friends {
+    border: solid 2px red;
+    margin-top: 20px;
+}
