@@ -1,0 +1,8 @@
+.profile {
+  border: 2px solid red;
+}
+
+.friend {
+  border: 2px solid black;
+  margin-top: 10px;
+}
