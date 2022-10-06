@@ -1,0 +1,27 @@
+{
+    "user": {
+        "id": "temp-user-01",
+        "age": "26",
+        "username": "Velo",
+        "friends": [
+            {
+                "id": "temp-user-02",
+                "originId": "temp-user-01",
+                "username": "FoxMon",
+                "age": "27"
+            },
+            {
+                "id": "temp-user-03",
+                "originId": "temp-user-01",
+                "username": "FoxMon2",
+                "age": "27"
+            },
+            {
+                "id": "temp-user-04",
+                "originId": "temp-user-01",
+                "username": "FoxMon3",
+                "age": "27"
+            }
+        ]
+    }
+}
