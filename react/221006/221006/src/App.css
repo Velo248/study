@@ -1,0 +1,11 @@
+.board {
+  border: solid 1px red;
+  margin-top: 10px;
+}
+
+.inputContainer {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  margin-top: 20px;
+}
