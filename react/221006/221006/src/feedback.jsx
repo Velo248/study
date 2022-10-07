@@ -59,28 +59,6 @@ function App() {
             setBoardList(deletedArr)
         }
     }
-
-    // const boardUpdateClickHandle = (key) => {
-    //     const updateBoard = { ...boardList.find((board) => board.id === key) }
-    //     updateBoard.title = window.prompt("새로운 제목", updateBoard.title)
-    //     updateBoard.content = window.prompt("새로운 내용", updateBoard.content)
-
-    //     const newArr = boardList.map(e => {
-    //         if (e.id === updateBoard.id) {
-    //             return new BoardType(updateBoard.id, updateBoard.title, updateBoard.content, updateBoard.user)
-    //         }
-    //         return e
-    //     })
-
-    //     setBoardList([...newArr])
-    // }
-
-    const handleFindBoardByKey = (key) => {
-        const updateBoard = { ...boardList.find((board) => board.id === key) }
-        return updateBoard
-    }
-    
-    const handleFlagCloseChange = (checked) => () => setIsEditMode(checked)
     
     const handleFindbyKey = (list) => () => {
         setIsEditMode((prev) => !prev)
@@ -93,21 +71,15 @@ function App() {
 
     const handleUpdateSubmit = (data) => (e) => {
         e.preventDefault()
-        setBoardList(prev => {
-            prev.map((p) => {
-                if(p.id === updateKey) {
-                    return {
-                        id: updateKey,
-                        title: data.title,
-                        content: data.content
-                    }
-                } else {
-                    return p
-                }
-            })
+        handleCancelClick()
+        const newArr = boardList.map(e => {
+            if(e.id === data.id) {
+                return new BoardType(data.id, data.title, data.content, userData)
+            }
+            return e
         })
-        console.log(boardList)
-        debugger
+
+        setBoardList([...newArr])
     }
 
     return (
@@ -125,9 +97,6 @@ function App() {
                         </div>
                         )))}
                     </div>
-                    여기 form을 컨트롤할 때는 form 태그를 사용하는게 좋음
-                    form을 쓰면 button click시 button의 type은 submit
-                    input은 value와 name 속성을 넣어주는 것이 좋음
                     <div className='inputContainer'>
                         <form onSubmit={handleCreateBoard}>
                             <label htmlFor='title'>제목입력</label>
@@ -139,10 +108,6 @@ function App() {
                     </div>
                 </div>
             ) : (
-                // <Update 
-                //     data={handleFindBoardByKey(boardValue.editKey)}
-                //     onFlagChangeEvent={handleFlagCloseChange(false)}
-                //     />
                 <Update2 
                     boardList={boardList} 
                     updateKey={updateKey} 
@@ -154,32 +119,18 @@ function App() {
     );
 }
 
-// const Update = ({data, onFlagChangeEvent}) => {
-//     const { id, title, content, user } = data
-
-//     return (
-//         <div>
-//             <p>{title}</p>
-//             <p>{content}</p>
-//             <button onClick={onFlagChangeEvent()}>취소</button>
-//         </div>
-//     )
-// }
-
 const Update2 = ({ boardList, updateKey, onCancelButtonEvent, onSubmitEvent }) => {
-    const data = Object.assign({}, boardList.find((b) => b.id === updateKey))
+    const data = { ...boardList.find((board) => board.id === updateKey) }
     const [updateState, setUpdateState] = useState({
         title: data.title,
-        content: data.content
+        content: data.content,
+        id: data.id,
     })
 
-    const handleChange = (e) => {
-        const { name, value } = e.target
-        setUpdateState(prev => {
-            return {
-                ...prev,
-                [name]: value
-            }
+    const valueChangeHandle = (e) => {
+        setUpdateState({
+            ...updateState,
+            [e.target.name]: e.target.value,
         })
     }
 
@@ -187,8 +138,8 @@ const Update2 = ({ boardList, updateKey, onCancelButtonEvent, onSubmitEvent }) =
         <form onSubmit={onSubmitEvent(updateState)}>
             <p>{data.title}</p>
             <p>{data.content}</p>
-            <input name="title" value={updateState.title} onChange={handleChange} />
-            <input name="content" value={updateState.content} onChange={handleChange} />
+            <input name="title" value={updateState.title} onChange={valueChangeHandle} />
+            <input name="content" value={updateState.content} onChange={valueChangeHandle} />
             <button onClick={onCancelButtonEvent}>취소</button>
             <button type="submit">Submit</button>
         </form>
