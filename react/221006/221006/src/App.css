@@ -5,7 +5,7 @@
 
 .inputContainer {
   display: flex;
-  width: 300px;
+  width: 250px;
   flex-direction: column;
   margin-top: 20px;
 }
