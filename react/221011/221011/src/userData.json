@@ -1,0 +1,19 @@
+{
+    "users": [
+        {
+            "name": "velo",
+            "email": "test@dev.com",
+            "password": "test"
+        },
+        {
+            "name": "velo2",
+            "email": "test2@dev.com",
+            "password": "test2"
+        },
+        {
+            "name": "velo3",
+            "email": "test3@dev.com",
+            "password": "test3"
+        }
+    ]
+}
