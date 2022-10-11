@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import UserContext, { Context } from './userContext';
+
 import './App.css';
+import { useState } from 'react';
+import { useContext } from 'react';
 
 function App() {
+  const [isUser, setIsUser] = useState(null)
+  const { userSignOutEvent } = useContext(Context)
+  useEffect(() => {
+    setIsUser(localStorage)
+  }, [isUser])
+
+  const handleSingout = () => { //이거 작동을 안한다..
+    userSignOutEvent()
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='appContainer'>
+        <UserContext>
+          <div>
+            {localStorage.getItem("email")}
+            {localStorage.getItem("token")}
+            <button onClick={handleSingout}>로그아웃</button>
+          </div>
+        </UserContext>
     </div>
+
   );
 }
 

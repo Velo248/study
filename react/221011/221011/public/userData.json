@@ -1,17 +1,17 @@
 {
     "users": [
         {
-            "name": "velo",
+            "username": "velo",
             "email": "test@dev.com",
             "password": "test"
         },
         {
-            "name": "velo2",
+            "username": "velo2",
             "email": "test2@dev.com",
             "password": "test2"
         },
         {
-            "name": "velo3",
+            "username": "velo3",
             "email": "test3@dev.com",
             "password": "test3"
         }
