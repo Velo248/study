@@ -1,11 +1,8 @@
-import { useState } from "react";
-import { useReducer } from "react";
+import { useState, useReducer, createContext, useEffect } from "react";
 import { Reducer, UserInit } from "./reducer";
 import axios from "axios";
-import { createContext } from "react";
-import { useEffect } from "react";
 
-export const Context = createContext({})
+export const Context = createContext({}) //여기에 app에서 쓸 함수를 넣는거 같은데 접근이 안된다.
 
 function UserContext ({ children }) {
     //임마는 이메일이랑 토큰만 들고있기
@@ -94,6 +91,7 @@ function UserContext ({ children }) {
     const 어케올리는걸까 = {
         userSignOutEvent, dispatch
     }
+
     return (
         <Context.Provider value={어케올리는걸까}>
             {!isUser ? (
@@ -109,7 +107,7 @@ function UserContext ({ children }) {
                     </div>
                 </div>
             ) : (
-                children //이친구가 app에 div를 가르키는게 아닌가?
+                children //이친구가 app에 div를 가르키는것 같다.
             )}
         </Context.Provider>
     )

@@ -1,7 +1,5 @@
 const SIGN_IN = "SIGN_IN"
 const SIGN_OUT = "SIGN_OUT"
-const SIGN_UP = "SIGN_UP"
-
 
 const Reducer = {}
 
