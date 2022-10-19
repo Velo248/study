@@ -1,31 +1,37 @@
-const SIGN_IN = "SIGN_IN"
-const SIGN_OUT = "SIGN_OUT"
+const SIGN_IN = "SIGN_IN";
+const SIGN_OUT = "SIGN_OUT";
+const CURRENT = "CURRENT";
+const Reducer = {};
 
-const Reducer = {}
+const UserInit = {};
+UserInit.token = null;
+UserInit.email = null;
 
-const UserInit = {}
-UserInit.token = null
-UserInit.email = null
+Reducer.reducer = function (state, action) {
+  const { email, token } = action.payload;
 
-Reducer.reducer = function(state, action) {
-    switch(action.type) {
-        case SIGN_IN: {
-            return {
-                ...state,
-                email: action.action.email,
-                token: action.action.token,
-                //비밀번호를 넘겨야하나?
-            }
-        }
-        case SIGN_OUT: 
-            return {
-                ...state,
-                email: null,
-                token: null,
-            }
-        default: 
-            return state
+  switch (action.type) {
+    case SIGN_IN: {
+      return {
+        ...state,
+        email: email,
+        token: token,
+      };
     }
-}
+    case SIGN_OUT:
+      return {
+        ...state,
+        email: null,
+        token: null,
+      };
+    case CURRENT:
+      return {
+        ...state,
+        token: token,
+      };
+    default:
+      return state;
+  }
+};
 
-export { Reducer, UserInit }
+export { Reducer, UserInit };
