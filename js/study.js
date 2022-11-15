@@ -14,10 +14,40 @@
  * 다른 형태의 matrix가 들어올 수 있으나 회전이 가능한 경우만 취급.
  */
 
+// function solution1(dir, degree, matrix) {
+//   const answer = [];
+//   return answer;
+// }
 function solution1(dir, degree, matrix) {
-  const answer = [];
-  return answer;
+  let answer = [...matrix];
+
+  if (dir < 0) {
+    degree = 360 - degree;
+  }
+
+  const turnArr = () => {
+    for (let i = 0; i < matrix.length; i++) {
+      for (let j = matrix.length; j < matrix.length * 2; j++) {
+        if (i == 0) {
+          answer[j] = [];
+        }
+        answer[j].unshift(answer[i][j - matrix.length]);
+      }
+    }
+  };
+
+  let i = 0;
+  do {
+    turnArr();
+    answer = answer.slice(matrix.length);
+    i++;
+    console.log(answer);
+  } while (i < degree / 90);
+
+  return '';
 }
+
+console.log(solution1(1, 90, [([1, 2, 3], [4, 5, 6], [7, 8, 9])]));
 
 /**
  * Q2) 짝이 없는 친구 찾기
@@ -64,16 +94,16 @@ function solution1(dir, degree, matrix) {
 //   return answer;
 // }
 
-function solution2(arr) {
-  let map = new Map();
-  arr.forEach((e) => {
-    console.log('현재 값', e);
-    map.has(e) ? map.delete(e) : map.set(e, e);
-    console.log('map내부 key => value', map);
-  });
-  return [...map.values()];
-}
-console.log(solution2([3, 1, 11, 10, 102, 1, 1, 11, 3]));
+// function solution2(arr) {
+//   let map = new Map();
+//   arr.forEach((e) => {
+//     console.log('현재 값', e);
+//     map.has(e) ? map.delete(e) : map.set(e, e);
+//     console.log('map내부 key => value', map);
+//   });
+//   return [...map.values()];
+// }
+// console.log(solution2([3, 1, 11, 10, 102, 1, 1, 11, 3]));
 
 /**
  * Q3) 대포와 대공포
@@ -88,11 +118,11 @@ console.log(solution2([3, 1, 11, 10, 102, 1, 1, 11, 3]));
  * 실패했다면 '방어실패', 공격허용 '('
  * 대공포를 더 많이 소비했다면 '방어실패', 과소비 ')' 와 같이 표시합니다.
  */
-function solution3(attack) {
-  return defense;
-}
+// function solution3(attack) {
+//   return defense;
+// }
 
-console.log(solution3('({attack([abc]))})'));
+// console.log(solution3('({attack([abc]))})'));
 
 /**
  * Q4) 계단을 올라봅시다.
@@ -102,8 +132,8 @@ console.log(solution3('({attack([abc]))})'));
  * 예를 들어 3개의 계단이라면, [1, 1, 1], [1, 2], [2, 1]과 같이 3가지 경우의 수가 나옵니다.
  */
 
-function solution4(stairs) {
-  return up;
-}
+// function solution4(stairs) {
+//   return up;
+// }
 
-console.log(solution4(3));
+// console.log(solution4(3));
